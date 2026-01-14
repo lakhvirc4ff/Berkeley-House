@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Berkeley House | Business Centre in Kenilworth</title>
+  <meta name="description" content="Family-owned business centre in the heart of historic Kenilworth. Offices to let, meeting rooms, virtual offices, and business services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b132b;
+      --bg-2: #1c2541;
+      --brand: #1da3b0;
+      --brand-2: #76e4f7;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --card: #ffffff;
+      --ring: rgba(29,163,176,.35);
+      --shadow: 0 10px 30px rgba(2, 8, 23, 0.18);
+      --radius: 16px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: #f6fafb;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Header */
+    .site-header{
+      position: sticky; top:0; z-index:100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eef2f7;
+    }
+    .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .row{ display:flex; align-items:center; justify-content: space-between; gap:16px; height: 70px; }
+
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .brand img{ width:44px; height:44px; object-fit: contain; }
+    .brand span{ font-weight:700; font-size: 1.1rem; letter-spacing:.5px; color: var(--ink); }
+
+    nav ul{ display:flex; list-style:none; gap: 10px; padding:0; margin:0; }
+    nav a, nav a:link, nav a:visited{
+      text-decoration:none; color:#0f172a;
+      font-weight:600; font-size:.95rem;
+      padding:10px 12px; border-radius: 10px;
+    }
+    nav a:hover{ background:#eef7f8; text-decoration:none; }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:700; text-decoration:none;
+      border-radius: 999px; padding: 12px 18px;
+      border:1px solid transparent;
+      transition: .2s ease;
+      cursor:pointer;
+    }
+    .btn-primary{ background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:#002229; }
+    .btn-primary:hover{ filter: brightness(.95); transform: translateY(-1px); }
+    .btn-ghost{ border-color:#dbe6ea; color:#0b132b; background:#fff; }
+    .btn-ghost:hover{ background:#f2fbfc; border-color:#b9e7ef; }
+
+    /* Mobile menu */
+    .menu-btn{ display:none; background:none; border:none; font-size: 28px; }
+    .mobile-nav{ display:none; }
+    @media (max-width: 900px){
+      nav{ display:none; }
+      .menu-btn{ display:block; }
+      .mobile-nav{
+        display:none;
+        position: static;
+        inset: 70px 0 0 0;
+        background: linear-gradient(180deg, rgba(15,23,42,.92), rgba(2,6,23,.88));
+        backdrop-filter: blur(6px);
+        border-top:1px solid rgba(255,255,255,.08);
+        padding: 20px;
+        z-index: 95;
+      }
+      .mobile-nav a{
+        display:block;
+        padding:16px;
+        border-radius: 12px;
+        font-weight:600;
+        color:#ffffff;
+        text-decoration:none;
+      }
+      .mobile-nav a:hover{ background: rgba(255,255,255,.08); }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 520px;
+      background:
+        linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.80)),
+        url("file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\64cb5788-afad-4430-aea9-65c0e896897d.jpg") center/cover no-repeat;
+      color: white;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 36px;
+      padding: 96px 20px;
+      align-items: center;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(255,255,255,0.2); color:#fff;
+      border:1px solid rgba(255,255,255,0.3);
+      padding:8px 12px; border-radius:999px;
+      font-weight:700; font-size:.8rem;
+    }
+    .h1{
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin: 14px 0 10px;
+      letter-spacing: -0.02em;
+      color:#fff;
+    }
+    .lead{ color: rgba(255,255,255,0.9); font-size: clamp(1rem, 1.6vw, 1.1rem); }
+    .cta{ display:flex; gap:12px; flex-wrap: wrap; margin-top: 22px; }
+
+    .hero-card{
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #e6eef0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display:grid;
+      grid-template-columns: auto 1fr;
+      gap:14px;
+      color:#000;
+    }
+    .hero-list{ display:grid; gap:10px; margin-top: 18px; padding-left:0; }
+    .hero-list li{ display:flex; align-items:center; gap:10px; list-style:none; color: rgba(255,255,255,0.95); }
+    .check{
+      width: 24px; height:24px;
+      border-radius: 999px;
+      display:inline-grid; place-items:center;
+      background: #1da3b0; color:#000000; font-weight:900;
+      flex: 0 0 auto;
+    }
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns: 1fr; padding: 76px 20px; }
+    }
+
+    /* SECTION SPACING FIX (this is what you asked for) */
+    section{
+      padding: 120px 0;               /* more breathing room */
+    }
+    .section-title{
+      font-size: clamp(1.6rem, 2.6vw, 2rem);
+      margin:0 0 18px;
+    }
+    .section-sub{
+      color: var(--muted);
+      margin: 0 0 48px;               /* bigger gap before the boxes */
+      max-width: 72ch;                /* makes it look less cramped */
+    }
+
+    /* Consistent spacing above main content blocks */
+    .content-block{
+      margin-top: 22px;               /* ensures every section has breathing room */
+    }
+
+    /* Divider spacing */
+    .section-divider{
+      border-top: 1px solid #e7eef3;
+      margin: 0;
+    }
+
+    /* Offset anchor scroll */
+    :target{ scroll-margin-top: 92px; }
+
+    /* Grid & Cards */
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 22px; }
+    .col-4{ grid-column: span 4; }
+    .col-6{ grid-column: span 6; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){ .col-4, .col-6{ grid-column: span 12; } }
+
+    .card{
+      background: var(--card);
+      border:1px solid #e7eef3;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display:flex;
+      flex-direction: column;
+      gap:12px;
+    }
+    .card h3{ margin:0; font-size: 1.25rem; }
+    .card p{ margin:0; color:#334155; }
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:#eef7f8; padding:6px 10px;
+      border-radius: 999px; font-weight:700;
+      color:#065f66; font-size:.8rem;
+      width: fit-content;
+    }
+
+    .features{ padding-left:0; margin: 6px 0 0; }
+    .features li{ list-style:none; display:flex; gap:10px; align-items:flex-start; margin: 8px 0; color:#334155; }
+    .features .dot{ width:10px; height:10px; background: var(--brand); border-radius:999px; margin-top: 6px; flex:0 0 auto; }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+    }
+    .photo{
+      grid-column: span 4;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e7eef3;
+      box-shadow: var(--shadow);
+      background:#fff;
+    }
+    .photo img{
+      width:100%;
+      height: 240px;                  /* more visual space */
+      object-fit: cover;
+      display:block;
+    }
+    .photo .cap{
+      padding: 14px 16px;
+      color:#334155;
+      font-weight:600;
+      font-size:.95rem;
+    }
+    @media (max-width: 900px){
+      .photo{ grid-column: span 12; }
+      .photo img{ height: 260px; }
+    }
+
+    /* Testimonials */
+    .testimonials{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+    }
+    .quote{
+      grid-column: span 4;
+      background: #fff;
+      border:1px solid #e7eef3;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .quote p{
+      margin:0;
+      color:#334155;
+      line-height:1.65;
+    }
+    .quote .who{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:#0f172a;
+      font-weight:700;
+    }
+    .stars{ letter-spacing: 2px; font-weight:900; }
+    @media (max-width: 900px){
+      .quote{ grid-column: span 12; }
+    }
+
+    /* Businesses */
+    .logo-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 22px;
+      align-items:center;
+    }
+    .logo{
+      background:#fff;
+      border:1px solid #e7eef3;
+      border-radius: 14px;
+      padding: 18px;
+      aspect-ratio: 3/1.15;
+      display:grid;
+      place-items:center;
+      color:#667;
+      font-weight:700;
+    }
+
+    /* About */
+    .about{
+      background: linear-gradient(180deg, #ffffff 0%, #f2f9fb 100%);
+      border-top:1px solid #e7eef3;
+      border-bottom:1px solid #e7eef3;
+    }
+
+    /* Contact */
+    form{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    form .full{ grid-column: 1 / -1; }
+    label{ font-weight:600; font-size:.9rem; }
+    input, textarea{
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border:1px solid #dfe8ec;
+      background:#fff;
+      font: inherit;
+    }
+    textarea{ min-height: 140px; resize: vertical; }
+    input:focus, textarea:focus{
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    /* Footer */
+    .site-footer{ padding: 34px 0 70px; color:#475569; }
+    .footer-grid{ display:grid; gap: 18px; grid-template-columns: 2fr 1fr; }
+    .small{ font-size:.9rem; color:#6b7280; }
+    @media (max-width: 900px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+    /* Lock scroll when nav open */
+    body.nav-open{ overflow:hidden; }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(16px); transition: .6s ease; }
+    .reveal.visible{ opacity:1; transform: none; }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="row">
+        <a class="brand" href="#top" aria-label="Berkeley House Home">
+          <img src="assets/logo.png" alt="Berkeley House logo" onerror="this.style.display='none'">
+          <span>Berkeley House</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#photos">Photos</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#businesses">Businesses</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn btn-ghost" href="tel:+441926802000" aria-label="Call us">Call</a>
+          <a class="btn btn-primary" href="#contact" aria-label="Enquire">Enquire</a>
+          <button class="menu-btn" aria-label="Open menu" id="menuBtn" aria-controls="mobileNav">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services" onclick="toggleNav(false)">Services</a>
+      <a href="#photos" onclick="toggleNav(false)">Photos</a>
+      <a href="#reviews" onclick="toggleNav(false)">Reviews</a>
+      <a href="#businesses" onclick="toggleNav(false)">Businesses</a>
+      <a href="#about" onclick="toggleNav(false)">About</a>
+      <a href="#contact" onclick="toggleNav(false)">Contact</a>
+      <a href="tel:+441926802000">Call +44 1926 802000</a>
+      <a href="mailto:reception@berkeley-house.co.uk">reception@berkeley-house.co.uk</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="badge">Open for your business</span>
+        <h1 class="h1">
+          Berkeley House is
+          <span style="background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">
+            Open for your Business
+          </span>
+        </h1>
+        <p class="lead">Family owned and managed, Berkeley House provides office, retail and meeting spaces — plus business services — in the heart of historic Kenilworth.</p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">Book a Tour</a>
+          <a class="btn btn-ghost" href="#services">View Services</a>
+        </div>
+
+        <ul class="hero-list">
+          <li><span class="check">✓</span> Central Kenilworth location — 6 The Square, CV8 1EB</li>
+          <li><span class="check">✓</span> High-speed Wi-Fi, tea/coffee (self service), projector available</li>
+          <li><span class="check">✓</span> Flexible terms and friendly on-site management</li>
+          <li><span class="check">✓</span> Tenants enjoy 50% off takeaway drinks at the nearby Coffee Shop</li>
+          <li><span class="check">✓</span> Get support in business growth</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card" aria-label="Quick contact">
+        <div aria-hidden="true" style="width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; color:#003; font-weight:900;">BH</div>
+        <div>
+          <strong>Talk to us today</strong>
+          <p class="small" style="margin:6px 0 12px;">Prefer the phone? We’re quick.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-ghost" href="tel:+441926802000">+44 1926 802000</a>
+            <a class="btn btn-ghost" href="mailto:reception@berkeley-house.co.uk">Email reception</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <hr class="section-divider">
+
+  <!-- Services -->
+  <section id="services" class="wrap">
+    <h2 class="section-title">What we do</h2>
+    <p class="section-sub">Berkeley House works with a number of businesses and has exciting plans to further develop this historic site. We currently offer the following services.</p>
+
+    <div class="grid content-block">
+      <article class="card col-4 reveal">
+        <span class="pill">Meeting Rooms</span>
+        <h3>Professional rooms for productive meetings</h3>
+        <p>Two rooms available with projector, wired &amp; wireless internet and self-serve tea/coffee. Book by the hour or day.</p>
+        <ul class="features">
+          <li><span class="dot"></span> Projector &amp; high-speed Wi-Fi</li>
+          <li><span class="dot"></span> Up to 12 people</li>
+          <li><span class="dot"></span> Easy online booking</li>
+        </ul>
+        <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#contact">Book Now</a>
+          <a class="btn btn-ghost" href="#contact">Ask Availability</a>
+        </div>
+      </article>
+
+      <article class="card col-4 reveal">
+        <span class="pill">Virtual Offices</span>
+        <h3>Prestigious Kenilworth address</h3>
+        <p>Use Berkeley House as your registered business address with post collection and reduced meeting room rates.</p>
+        <ul class="features">
+          <li><span class="dot"></span> Central CV8 location</li>
+          <li><span class="dot"></span> Mail handling &amp; notifications</li>
+          <li><span class="dot"></span> Member discounts</li>
+        </ul>
+        <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#contact">Set Up</a>
+          <a class="btn btn-ghost" href="#contact">Learn More</a>
+        </div>
+      </article>
+
+      <article class="card col-4 reveal">
+        <span class="pill">Offices to Let</span>
+        <h3>Private offices from 145–400 sq ft</h3>
+        <p>Prime location at the centre of Kenilworth. Flexible terms and dedicated on-site management.</p>
+        <ul class="features">
+          <li><span class="dot"></span> Move-in ready spaces</li>
+          <li><span class="dot"></span> 145–400 sq ft</li>
+          <li><span class="dot"></span> Book a site tour</li>
+        </ul>
+        <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#contact">Enquire Now</a>
+          <a class="btn btn-ghost" href="tel:+441926802000">Call Reception</a>
+        </div>
+      </article>
+
+      <article class="card col-12 reveal" aria-label="Hotdesk teaser">
+        <div class="grid">
+          <div class="col-6">
+            <span class="pill">Coming Soon</span>
+            <h3 style="margin-top:6px;">Hotdesk Passes</h3>
+            <p>Grab a focused desk when you need it. Day passes and monthly memberships with tea/coffee and member discounts on meeting rooms.</p>
+          </div>
+          <div class="col-6" style="display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-ghost" href="#contact">Register Interest</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Photos -->
+  <section id="photos" class="wrap">
+    <h2 class="section-title">Inside Berkeley House</h2>
+    <p class="section-sub">A quick look at our offices, meeting rooms, and shared spaces.</p>
+
+    <div class="gallery content-block">
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\50ca3735-2e39-4b18-9abe-5270cfebcf63.jpg" alt="Private office space at Berkeley House" loading="lazy">
+        <figcaption class="cap">Private offices</figcaption>
+      </figure>
+
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\293f47b6-e7cf-486f-bc0b-df39df971690.jpg" alt="Meeting room with projector" loading="lazy">
+        <figcaption class="cap">Meeting rooms</figcaption>
+      </figure>
+
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\photo_2026-01-05_14-53-48.jpg" alt="Reception and shared area" loading="lazy">
+        <figcaption class="cap">Reception &amp; shared areas</figcaption>
+      </figure>
+
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\0138b0b3-c1ab-4c39-9138-94d061449d20.jpg" alt="Coffee and breakout space" loading="lazy">
+        <figcaption class="cap">Breakout space</figcaption>
+      </figure>
+
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\64cb5788-afad-4430-aea9-65c0e896897d.jpg" alt="Hallways and access" loading="lazy">
+        <figcaption class="cap">Easy access</figcaption>
+      </figure>
+
+      <figure class="photo reveal">
+        <img src="file:///c:\Users\aebs7\OneDrive\Documents\Berkeley House\Add a heading.png" alt="Berkeley House exterior" loading="lazy">
+        <figcaption class="cap">Historic Kenilworth location</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Tenant Reviews -->
+  <section id="reviews" class="wrap">
+    <h2 class="section-title">What tenants say</h2>
+    <p class="section-sub">Real feedback from people who work here.</p>
+
+    <div class="testimonials content-block">
+      <article class="quote reveal">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>“Quiet, professional, and the team are genuinely helpful. Booking a room is simple and everything is always set up properly.”</p>
+        <div class="who">
+          <span>Current tenant</span>
+          <span class="small">Meeting rooms</span>
+        </div>
+      </article>
+
+      <article class="quote reveal">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>“The location is perfect. Clients can find us easily and the building feels premium without being corporate and cold.”</p>
+        <div class="who">
+          <span>Current tenant</span>
+          <span class="small">Office space</span>
+        </div>
+      </article>
+
+      <article class="quote reveal">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>“Fast Wi-Fi, clean spaces, and the little perks add up. It feels like a community, not just a rented room.”</p>
+        <div class="who">
+          <span>Current tenant</span>
+          <span class="small">Virtual office</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Businesses -->
+  <section id="businesses" class="wrap">
+    <h2 class="section-title">Businesses</h2>
+    <p class="section-sub">Berkeley House businesses reflect the diversity and innovation of modern Kenilworth.</p>
+
+    <div class="logo-grid reveal content-block">
+      <div class="logo">client-6</div>
+      <div class="logo">client-7</div>
+      <div class="logo">client-9</div>
+      <div class="logo">client-10</div>
+      <div class="logo">Your Logo</div>
+      <div class="logo">Join Us</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="wrap">
+      <h2 class="section-title">About us</h2>
+      <p class="section-sub">We are based right in the heart of Kenilworth.</p>
+
+      <div class="grid content-block">
+        <div class="card col-6 reveal">
+          <h3>A little piece of history</h3>
+          <p>Berkeley House is a little piece of history right in the heart of Kenilworth. The site dates back to at least 1742 and in 2014 it was given a new lease of life. As a family owned and run site, we are dedicated to providing the best in office, retail and event space as well as business services.</p>
+          <p>With exciting plans to develop this historic site to offer the best in modern event space, Berkeley House will continue to be a fixture of the Kenilworth business and social scene.</p>
+        </div>
+
+        <div class="card col-6 reveal">
+          <h3>Fast facts</h3>
+          <ul class="features">
+            <li><span class="dot"></span> Address: 6 The Square, Kenilworth, Warwickshire CV8 1EB, United Kingdom</li>
+            <li><span class="dot"></span> Phone: <a href="tel:+441926802000">+44 1926 802000</a></li>
+            <li><span class="dot"></span> Email: <a href="mailto:reception@berkeley-house.co.uk">reception@berkeley-house.co.uk</a></li>
+            <li><span class="dot"></span> Parking &amp; transport: central location with nearby public parking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="wrap">
+    <h2 class="section-title">Contact us</h2>
+    <p class="section-sub">Send your enquiries by filling the online form. We’ll get back to you promptly.</p>
+
+    <div class="grid content-block">
+      <div class="col-6 reveal">
+        <form id="enquiryForm" novalidate>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com" />
+          </div>
+          <div class="full">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" required placeholder="Office enquiry / Meeting room / Virtual office" />
+          </div>
+          <div class="full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us what you need…"></textarea>
+          </div>
+          <div class="full" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button class="btn btn-primary" type="submit">Send Enquiry</button>
+            <a class="btn btn-ghost" href="mailto:reception@berkeley-house.co.uk">Email Instead</a>
+            <a class="btn btn-ghost" href="tel:+441926802000">Call Reception</a>
+          </div>
+          <p id="formMsg" class="small" aria-live="polite" style="margin-top:8px;"></p>
+        </form>
+      </div>
+
+      <div class="col-6 reveal">
+        <div class="card" style="height:100%;">
+          <h3>Find us</h3>
+          <p>Berkeley House, 6 The Square, Kenilworth, Warwickshire CV8 1EB</p>
+          <iframe title="Map of Berkeley House" style="width:100%; height: 320px; border:0; border-radius: 12px;"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Berkeley%20House%2C%206%20The%20Square%2C%20Kenilworth&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Berkeley House</strong>
+        <p class="small">6 The Square, Kenilworth, Warwickshire CV8 1EB, United Kingdom</p>
+        <p class="small">
+          <a href="mailto:reception@berkeley-house.co.uk">reception@berkeley-house.co.uk</a> ·
+          <a href="tel:+441926802000">+44 1926 802000</a>
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <a class="btn btn-primary" href="#contact">Book a Tour</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleNav(force){
+      const willOpen = force ?? mobileNav.style.display !== 'block';
+      mobileNav.style.display = willOpen ? 'block' : 'none';
+      menuBtn.setAttribute('aria-expanded', willOpen);
+      document.body.classList.toggle('nav-open', willOpen);
+    }
+    menuBtn?.addEventListener('click', () => toggleNav());
+
+    // Smooth scroll for same-page links
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      toggleNav(false);
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      })
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Contact form mailto fallback
+    const form = document.getElementById('enquiryForm');
+    const formMsg = document.getElementById('formMsg');
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name || !data.email || !data.subject || !data.message){
+        formMsg.textContent = 'Please complete all fields.';
+        formMsg.style.color = '#b91c1c';
+        return;
+      }
+      const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`);
+      const subject = encodeURIComponent(data.subject);
+      window.location.href = `mailto:reception@berkeley-house.co.uk?subject=${subject}&body=${body}`;
+      formMsg.textContent = 'Opening your email client… If nothing happens, email reception@berkeley-house.co.uk';
+      formMsg.style.color = '#065f46';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
